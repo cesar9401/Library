@@ -8,7 +8,7 @@ import java.sql.*;
  */
 public class Conexion {
     
-    private static final String URL = "jdbc:mysql://localhost/library";
+    private static final String URL = "jdbc:mysql://localhost:3306/library";
     private static final String USER = "cesar31";
     private static final String PASS = "Huevos94C";
     
@@ -19,6 +19,30 @@ public class Conexion {
     public static void close(Connection connection){
         try {
             connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(ResultSet rs){
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(Statement st){
+        try {
+            st.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(PreparedStatement ps){
+        try {
+            ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
