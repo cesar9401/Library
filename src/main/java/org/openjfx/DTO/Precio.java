@@ -6,11 +6,11 @@ package org.openjfx.DTO;
  */
 public class Precio {
     private int id_precio;
-    private int nombre;
+    private String nombre;
     private double precio;
     private String descripcion;
 
-    public Precio(int id_precio, int nombre, double precio) {
+    public Precio(int id_precio, String nombre, double precio) {
         this.id_precio = id_precio;
         this.nombre = nombre;
         this.precio = precio;
@@ -24,11 +24,11 @@ public class Precio {
         this.id_precio = id_precio;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.List;
-import org.openjfx.DAO.EstudianteDAO;
-import org.openjfx.DTO.Estudiante;
 
 /**
  * JavaFX App
@@ -25,14 +22,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//        launch(args);
-        EstudianteDAO dao = new EstudianteDAO();
-        List<Estudiante> estudiantes = dao.getEstudiantes();
-        
-        estudiantes.forEach((e) -> {
-            System.out.println(e);
-        });
-        
+        launch(args);
     }
 
 }
