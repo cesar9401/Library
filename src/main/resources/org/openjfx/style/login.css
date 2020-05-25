@@ -5,3 +5,17 @@
 .mainFxmlClass {
     -fx-background-color: #EAF2F8;
 }
+
+.textUser, .PassUser{
+    -fx-background-color: #F9EBEA;
+    
+}
+
+.buttonLogIn:hover{
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-translate-x: -5px;
+    -fx-translate-y: -2px;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 34px;
+}
