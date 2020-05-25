@@ -7,8 +7,8 @@
 }
 
 .textUser, .PassUser{
-    -fx-background-color: #F9EBEA;
-    
+    -fx-background-color: #85C1E9;
+    -fx-padding: 5px;
 }
 
 .buttonLogIn:hover{

@@ -6,14 +6,16 @@ package org.openjfx.DTO;
  */
 public class Libro {
     private int id_libro;
+    private String codigo;
     private String nombre;
     private int edicion;
     private String autor;
     private String editorial;
     private int stock;
 
-    public Libro(int id_libro, String nombre, int edicion) {
+    public Libro(int id_libro, String codigo, String nombre, int edicion) {
         this.id_libro = id_libro;
+        this.codigo = codigo;
         this.nombre = nombre;
         this.edicion = edicion;
     }
@@ -26,6 +28,14 @@ public class Libro {
         this.id_libro = id_libro;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public String getNombre() {
         return nombre;
     }

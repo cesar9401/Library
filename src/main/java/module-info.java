@@ -7,4 +7,7 @@ module org.openjfx {
 
     opens org.openjfx to javafx.fxml;
     exports org.openjfx;
+    
+    //Para poder llenar las tablas
+    opens org.openjfx.DTO to javafx.base;
 }
