@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.openjfx.DTO.Libro;
 
 /**
@@ -111,5 +113,38 @@ public class LibroDAO {
             Conexion.close(delLib);
             Conexion.close(conexion);
         }
+    }
+    
+    public List<Libro> getLibrosForSearch(String busqueda){
+        List<Libro> libros = new ArrayList<>();
+        String query = "SELECT * FROM libros WHERE codigo LIKE ? OR nombre LIKE ? OR autor LIKE ? OR editorial LIKE ?";
+        Connection conexion = null;
+        PreparedStatement getLib = null;
+        ResultSet rs = null;
+        try {
+            conexion = Conexion.getConnection();
+            getLib = conexion.prepareStatement(query);
+            getLib.setString(1, busqueda);
+            getLib.setString(2, busqueda);
+            getLib.setString(3, busqueda);
+            getLib.setString(4, busqueda);
+            rs = getLib.executeQuery();
+            
+            while(rs.next()){
+                Libro tmp = new Libro(rs.getInt("id_libros"), rs.getString("codigo"), rs.getString("nombre"), rs.getInt("edicion"));
+                tmp.setAutor(rs.getString("autor"));
+                tmp.setEditorial(rs.getString("editorial"));
+                tmp.setStock(rs.getInt("stock"));
+                
+                libros.add(tmp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally{
+            Conexion.close(rs);
+            Conexion.close(getLib);
+            Conexion.close(conexion);
+        }
+        return libros;
     }
 }

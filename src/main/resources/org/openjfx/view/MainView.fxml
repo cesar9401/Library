@@ -7,8 +7,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,31 +21,16 @@
         <menus>
           <Menu mnemonicParsing="false" text="Administrador">
             <items>
-                  <MenuItem fx:id="itemcerrarSesion" mnemonicParsing="false" onAction="#ActionCerrarSesion" styleClass="itemcerrarSesion" text="Cerrar Sesion" />
+                  <MenuItem mnemonicParsing="false" text="Agregar Libros" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Agregar Administrador" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="itemcerrarSesion" mnemonicParsing="false" onAction="#ActionCerrarSesion" styleClass="itemcerrarSesion" text="Cerrar Sesion" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <TreeTableView layoutX="350.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0">
-        <columns>
-          <TreeTableColumn prefWidth="50.0" text="No." />
-          <TreeTableColumn prefWidth="125.0" text="Estudiante" />
-            <TreeTableColumn prefWidth="125.0" text="Libro" />
-            <TreeTableColumn prefWidth="100.0" text="Fecha" />
-        </columns>
-      </TreeTableView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="50.0" prefHeight="40.0" prefWidth="150.0" text="Prestamos">
+      <Label fx:id="labelPrestamos" alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="50.0" prefHeight="40.0" prefWidth="150.0" styleClass="labelPrestamos" text="Prestamos">
          <font>
             <Font size="24.0" />
          </font>
@@ -60,5 +45,13 @@
             <Font size="16.0" />
          </font>
       </JFXButton>
+      <TableView fx:id="tablePrestamos" layoutX="300.0" layoutY="100.0" prefHeight="400.0" prefWidth="450.0" styleClass="tablePrestamos">
+        <columns>
+          <TableColumn fx:id="columnNumero" editable="false" prefWidth="50.0" resizable="false" styleClass="columnNumero" text="No. " />
+          <TableColumn fx:id="columnEstudiante" editable="false" prefWidth="125.0" resizable="false" styleClass="columnEstudiante" text="Estudiante" />
+            <TableColumn fx:id="columnLibro" editable="false" prefWidth="125.0" resizable="false" styleClass="columnLibro" text="Libro" />
+            <TableColumn fx:id="columnFecha" editable="false" prefWidth="150.0" resizable="false" styleClass="columnFecha" text="Fecha" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import org.openjfx.DAO.LibroDAO;
 import org.openjfx.DTO.Libro;
 
@@ -55,6 +56,8 @@ public class NuevoPrestamoController implements Initializable {
     private TableColumn columnEdicion;
     @FXML
     private TableColumn columnStock;
+    @FXML
+    private TableColumn<?, ?> columnEditorial;
 
     /**
      * Initializes the controller class.
@@ -89,6 +92,7 @@ public class NuevoPrestamoController implements Initializable {
         this.columnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.columnEdicion.setCellValueFactory(new PropertyValueFactory("edicion"));
         this.columnAutor.setCellValueFactory(new PropertyValueFactory("autor"));
+        this.columnEditorial.setCellValueFactory(new PropertyValueFactory("editorial"));
         this.columnStock.setCellValueFactory(new PropertyValueFactory("stock"));
     }
 
@@ -99,6 +103,23 @@ public class NuevoPrestamoController implements Initializable {
         if(!this.libros.containsAll(lib)){
             this.libros.addAll(lib);
             tableLibro.setItems(libros);
+        }
+    }
+
+    @FXML
+    private void ActionTextLibro(KeyEvent event) {
+        String busqueda = textLibro.getText();
+        if(!busqueda.equals("")){
+            busqueda = "%" + busqueda + "%";
+            LibroDAO libroDAO = new LibroDAO();
+            List<Libro> libs = libroDAO.getLibrosForSearch(busqueda);
+            libros.clear();
+            if(!this.libros.containsAll(libs)){
+            this.libros.addAll(libs);
+            tableLibro.setItems(libros);
+            }
+        }else{
+            setTable();
         }
     }
 }
