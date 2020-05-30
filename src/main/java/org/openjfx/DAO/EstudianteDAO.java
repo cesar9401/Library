@@ -54,6 +54,37 @@ public class EstudianteDAO {
         return estudiantes;
     }
     
+    public Estudiante getEstudiantebyCarnet(String carnet){
+        Estudiante estudiante = null;
+        String query = "SELECT * FROM estudiantes WHERE carnet = ?";
+        
+        Connection conexion = null;
+        PreparedStatement getEst = null;
+        ResultSet rs = null;
+        try {
+            conexion = Conexion.getConnection();
+            getEst = conexion.prepareStatement(query);
+            getEst.setString(1, carnet);
+            rs = getEst.executeQuery();
+            
+            if(rs.next()){
+                estudiante = new Estudiante(rs.getInt("id_estudiantes"), rs.getString("carnet"), rs.getString("carrera"));
+                estudiante.setNombres(rs.getString("nombres"));
+                estudiante.setApellidos(rs.getString("apellidos"));
+                estudiante.setDpi(rs.getString("dpi"));
+                estudiante.setSocio(rs.getBoolean("socio"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally{
+            Conexion.close(rs);
+            Conexion.close(getEst);
+            Conexion.close(conexion);
+        }
+        
+        return estudiante;
+    }
+    
     public void insertEstudiante(Estudiante estudiante){
         String query = "INSERT INTO estudiantes(carnet, nombres, apellidos, dpi, carrera, socio) VALUES(?, ?, ?, ?, ?, ?)";
        

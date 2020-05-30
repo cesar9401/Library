@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openjfx.DTO.Libro;
 
 /**
@@ -45,6 +43,37 @@ public class LibroDAO {
         }
         
         return libros;
+    }
+    
+    public Libro getLibrobyId(int id_libro){
+        Libro tmp = null;
+        String query = "SELECT * FROM libros WHERE id_libros = ?";
+        
+        Connection conexion = null;
+        PreparedStatement getLib = null;
+        ResultSet rs = null;
+        try {
+            conexion = Conexion.getConnection();
+            getLib = conexion.prepareStatement(query);
+            getLib.setInt(1, id_libro);
+            rs = getLib.executeQuery();
+            
+            if(rs.next()){
+                tmp = new Libro(rs.getInt("id_libros"), rs.getString("codigo"), rs.getString("nombre"), rs.getInt("edicion"));
+                tmp.setAutor(rs.getString("autor"));
+                tmp.setEditorial(rs.getString("editorial"));
+                tmp.setStock(rs.getInt("stock"));
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally{
+            Conexion.close(rs);
+            Conexion.close(getLib);
+            Conexion.close(conexion);
+        }
+        
+        return tmp;
     }
     
     public void insertLibro(Libro libro){
