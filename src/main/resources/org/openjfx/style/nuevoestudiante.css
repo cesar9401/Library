@@ -5,3 +5,17 @@
 .mainFxmlClass {
     -fx-background-color: #EAF2F8;
 }
+
+.buttonEstudiante{
+    -fx-background-color: #3498DB;    
+}
+
+.buttonEstudiante:hover{
+    -fx-cursor: hand;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 36px;
+    -fx-font-size: 16px;
+    -fx-translate-x: -5px;
+    -fx-translate-y: -2px;
+
+}

@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.openjfx.DAO.EstudianteDAO;
 import org.openjfx.DAO.LibroDAO;
+import org.openjfx.DAO.PrestamoDAO;
 import org.openjfx.DTO.Estudiante;
 import org.openjfx.DTO.Libro;
 
@@ -88,7 +87,7 @@ public class NuevoPrestamoController implements Initializable {
 
         if (obj == buttonProcesar) {
             //Acciones para procesar prestamo
-            if (!textCarnet.getText().equals("")) {
+            if (!textCarnet.getText().equals("") && textCarnet.getText().length()==9) {
                 String carnet = textCarnet.getText();
                 Libro tmp = tableLibro.getSelectionModel().getSelectedItem();
                 if (tmp != null) {
@@ -135,7 +134,14 @@ public class NuevoPrestamoController implements Initializable {
     }
     
     private void procesarPrestamo(Estudiante estudiante, Libro libro) {
+        PrestamoDAO prestamosDAO = new PrestamoDAO();
+        int prestamosEst = prestamosDAO.getNumeroPrestamos(estudiante);
         
+        if(prestamosEst <2){
+            //Accione para procesar prestamo;
+        }else{
+            //Alerta
+        }
     }    
 
     private void createTable() {

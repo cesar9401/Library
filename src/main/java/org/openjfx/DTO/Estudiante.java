@@ -18,6 +18,15 @@ public class Estudiante {
         this.carnet = carnet;
         this.carrera = carrera;
     }
+
+    public Estudiante(String carnet, String nombres, String apellidos, String dpi, String carrera, boolean socio) {
+        this.carnet = carnet;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dpi = dpi;
+        this.carrera = carrera;
+        this.socio = socio;
+    }
     
     public int getId_estudiante() {
         return id_estudiante;
